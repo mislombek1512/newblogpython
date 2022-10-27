@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <div class="row justify-content-center mb-3">
+                <div class="col-4 text-center">
+                    <a class="nav-link" aria-current="page" href="{%  url 'post_new' %}">
+                        <button class="btn btn-success btn-sm"><i class="bi bi-plus"></i> Add</button>
+                    </a>
+                </div>
+   </div>
+    {%  for post in object_list %}
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <h5 class="card-header">{{post.author}}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.body | slice:":100"}}</p>
+                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">More</a>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock content %}
